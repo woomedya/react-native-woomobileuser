@@ -5,6 +5,7 @@ import { Input, Button } from 'react-native-elements';
 import * as tempuserStore from '../store/tempuser';
 import * as userApi from '../apis/user';
 import * as userAction from '../actions/user';
+import * as pageStore from '../store/page';
 
 export default class ActiveAccount extends Component {
     constructor(props) {
@@ -72,6 +73,10 @@ export default class ActiveAccount extends Component {
         });
     }
 
+    gotoResendActivation = () => {
+        pageStore.setPage(pageStore.PAGE_RESEND_ACTIVATION);
+    }
+
     render() {
         return <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
             <ScrollView style={{ backgroundColor: '#FFFFFF', flex: 1 }}>
@@ -119,6 +124,17 @@ export default class ActiveAccount extends Component {
                             type="outline"
                             onPress={this.activate}
                             loading={this.state.loading}
+                        />
+                    </View>
+
+                    <View style={{}}>
+                        <Button
+                            buttonStyle={{ borderColor: 'black', alignSelf: 'center' }}
+                            titleStyle={{ color: '#2B388F', fontSize: 16, fontWeight: 'bold', textAlign: 'center' }}
+                            containerStyle={{ paddingHorizontal: 10, paddingTop: 5, flex: 1 }} ß
+                            title={this.state.i18n.activeAccount.noconfirm}
+                            type="clear"
+                            onPress={this.gotoResendActivation}
                         />
                     </View>
                 </View>
