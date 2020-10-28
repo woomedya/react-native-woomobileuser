@@ -1,56 +1,56 @@
 export default {
     login: {
-        title: 'Woo Giriş',
-        username: 'Kullanıcı Adı',
-        password: 'Şifre',
-        login: 'Giriş Yap',
-        register: "Kayıt Ol",
-        forgotpass: 'Şifremi Değiştir',
-        error: 'Hata oluştu. Tekrar deneyiniz.',
-        invalid: 'Yanlış kullanıcı adı, şifre.',
-        enterUsername: 'Kullanıcı Adı giriniz.',
-        enterPassword: 'Şifre giriniz.',
+        title: 'Woo Login',
+        username: 'Username',
+        password: 'Password',
+        login: 'Login',
+        register: "Register",
+        forgotpass: 'Change My Password',
+        error: 'An error occurred. Try again.',
+        invalid: 'Wrong username, password.',
+        enterUsername: 'Enter Username.',
+        enterPassword: 'Enter password.',
     },
     register: {
-        title: 'Hesap Oluşturma',
-        register: 'Kayıt Ol',
-        email: 'E-posta',
-        description: 'E-posta adresinizle kayıt olabilirsiniz. E-postanıza göndereceğimiz onay kodu ile hesabınızı aktif hale getirerek giriş yapabilirsiniz.',
-        passwordagain: "Şifre (Tekrar)",
-        usernameInUse: 'Kullanıcı adı kullanılıyor.',
-        mailInUse: 'E-posta adresi kullanılıyor.',
-        enterEmail: 'E-posta adresi giriniz.',
-        passwordNotSame: 'Şifreler aynı değil.',
-        invalidEmail: 'Geçersiz e-posta adresi.'
+        title: 'Creating an Account',
+        register: 'Register',
+        email: 'E-mail',
+        description: 'You can register with your e-mail address. You can log in by activating your account with the confirmation code we will send to your e-mail.',
+        passwordagain: "Password (Again)",
+        usernameInUse: 'Username is used.',
+        mailInUse: 'E-mail address is used.',
+        enterEmail: 'Enter your e-mail address.',
+        passwordNotSame: 'Passwords are not the same.',
+        invalidEmail: 'Invalid e-mail address.'
     },
     forgotpass: {
-        title: 'Şifre Sıfırlama',
-        description: 'Şifre sıfırlamak için kayıt olduğunuz mail adresinizi giriniz. Size şifre sıfırlama kodu göndereceğiz. Bu kodu kullanarak şifrenizi yenileyebilirsiniz.',
-        sendcode: 'Şifre Sıfırlama Kodu Gönder',
-        gotcode: 'Koda Sahibim'
+        title: 'Password Reset',
+        description: 'Enter your registered e-mail address to reset the password. We will send you a password reset code. You can reset your password using this code.',
+        sendcode: 'Send Password Reset Code',
+        gotcode: 'I have a code'
     },
     changePassword: {
-        title: 'Şifre Değiştirme',
-        change: 'Şifreyi Değiştir',
-        description: 'Şifre sıfırlamak için kayıt olduğunuz mail adresinize gönderdiğimiz şifre sıfırlama kodunu kullanarak şifrenizi yenileyebilirsiniz.',
-        invalid: 'Yanlış kullanıcı adı, sıfırlama kodu.',
-        code: 'Şifre Sıfırlama Kodu',
-        enterRecoveryCode: 'Şifre sıfırlama kodunu giriniz.'
+        title: 'Change Password',
+        change: 'Change Password',
+        description: 'To reset your password, you can reset your password by using the password reset code we send to your registered e-mail address.',
+        invalid: 'Wrong username, reset code.',
+        code: 'Password Reset Code',
+        enterRecoveryCode: 'Enter the password reset code.'
     },
     activeAccount: {
-        title: 'Hesap Aktivasyonu',
-        confirm: 'Aktivasyon Kodu Gir',
-        code: 'Aktivasyon Kodu',
-        description: 'Hesap aktifleştirmek için kayıt olduğunuz mail adresinize gönderdiğimiz aktivasyon kodunu kullanarak hesabınızı aktif yapabilirsiniz.',
-        loginDescription: 'Mail adresinize gelen aktivasyon kodu ile hesabınızı aktif yapabilirsiniz.',
-        noconfirm: 'Kod Gelmedi',
-        invalid: 'Yanlış kullanıcı adı, aktivasyon kodu.',
-        enterActivationCode: 'Aktivasyon kodunu giriniz.'
+        title: 'Account Activation',
+        confirm: 'Enter Activation Code',
+        code: 'Activation code',
+        description: 'You can activate your account by using the activation code we send to your registered e-mail address to activate your account.',
+        loginDescription: 'You can activate your account with the activation code sent to your e-mail address.',
+        noconfirm: 'Code Not Arrived',
+        invalid: 'Wrong username, activation code.',
+        enterActivationCode: 'Enter the activation code.'
     },
     resendActivation: {
-        title: 'Aktivasyon Gönderimi',
-        description: 'Hesap aktifleştirmek için kayıt olduğunuz mail adresinizi giriniz. Size hesap aktivasyon kodu göndereceğiz. Bu kodu kullanarak hesabınızı aktif yapabilirsiniz.',
-        send: 'Aktivasyon Kodu Gönder',
-        invalid: 'Yanlış e-posta adresi.'
+        title: 'Activation Sending',
+        description: 'Enter your registered e-mail address to activate an account. We will send you an account activation code. Using this code, you can activate your account.',
+        send: 'Send Activation Code',
+        invalid: 'Incorrect email address.'
     }
 }
