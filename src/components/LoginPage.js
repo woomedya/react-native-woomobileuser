@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import i18n from '../locales';
 import * as langStore from '../store/language';
 import { Input, Button } from 'react-native-elements';
@@ -104,7 +104,7 @@ export default class LoginPage extends Component {
     }
 
     render() {
-        return <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+        return <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} style={{ flex: 1 }}>
             <ScrollView style={{ backgroundColor: '#FFFFFF', flex: 1 }}>
                 {
                     this.props.wellcome ?

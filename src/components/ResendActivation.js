@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import i18n from '../locales';
 import { Input, Button } from 'react-native-elements';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -73,7 +73,7 @@ export default class ResendActivation extends Component {
     }
 
     render() {
-        return <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+        return <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} style={{ flex: 1 }}>
             <ScrollView style={{ backgroundColor: '#FFFFFF', flex: 1 }}>
                 <View style={{ padding: 30, paddingVertical: 10 }}>
                     <Text
