@@ -6,26 +6,31 @@ import * as pageStore from '../store/page';
 import * as tempuserStore from '../store/tempuser';
 import * as userApi from '../apis/user';
 import * as emailUtil from '../utilities/email';
+import * as userAction from '../actions/user';
 
 export default class RegisterPage extends Component {
     constructor(props) {
         super(props)
         this.props = props;
 
+        this.data = pageStore.getData() || { type: 'register' };
+
         this.state = {
             i18n: i18n(),
-            email: '',
+            email: this.data.email || '',
             emailError: false,
             emailInValidError: false,
             username: '',
             usernameError: false,
-            password: '',
+            password: this.data.password || '',
             passwordError: false,
-            passwordagain: '',
+            passwordagain: this.data.password || '',
             passwordagainError: false,
             passwordagainSameError: false,
             serverErrorMessage: '',
-            loading: false
+            loading: false,
+            social: this.data.type == 'social',
+            token: this.data.token || ''
         };
     }
 
@@ -34,14 +39,28 @@ export default class RegisterPage extends Component {
         this.formControl();
         if (this.state.email && this.state.username && this.state.password && this.state.passwordagain && !this.state.emailInValidError && !this.state.passwordagainSameError) {
             try {
-                var code = await userApi.register(this.state.email, this.state.username, this.state.password);
+                var code = await userApi.register(this.state.email, this.state.username, this.state.password, this.state.token);
                 if (code == 'ok') {
-                    this.setState({
-                        serverErrorMessage: ""
-                    }, () => {
-                        tempuserStore.setUsername(this.state.username);
-                        pageStore.setPage(pageStore.PAGE_ACTIVE_ACCOUNT);
-                    });
+                    if (this.state.social) {
+                        var res = await userApi.loginForFirebase(this.state.email, this.state.token);
+
+                        if (res.user) {
+                            this.setState({
+                                serverErrorMessage: ""
+                            }, () => userAction.login(res.user));
+                        } else {
+                            this.setState({
+                                serverErrorMessage: this.state.i18n.login.socialerror
+                            });
+                        }
+                    } else {
+                        this.setState({
+                            serverErrorMessage: ""
+                        }, () => {
+                            tempuserStore.setUsername(this.state.username);
+                            pageStore.setPage(pageStore.PAGE_ACTIVE_ACCOUNT);
+                        });
+                    }
                 } else if (code == 'usernameInUse') {
                     this.setState({
                         serverErrorMessage: this.state.i18n.register.usernameInUse
@@ -117,13 +136,17 @@ export default class RegisterPage extends Component {
                     <Text
                         style={{ textAlign: 'center', fontSize: 30, fontWeight: 'bold', padding: 20, paddingBottom: 0 }}
                     >{this.state.i18n.register.title}</Text>
-                    <Text
-                        style={{ color: '#333333', textAlign: 'center', fontSize: 14, padding: 14, paddingTop: 10 }}
-                    >{this.state.i18n.register.description}</Text>
+                    {
+                        this.state.social ? null : <Text
+                            style={{ color: '#333333', textAlign: 'center', fontSize: 14, padding: 14, paddingTop: 10 }}
+                        >{this.state.i18n.register.description}</Text>
+                    }
                 </View>
 
                 <View style={{ padding: 16 }}>
                     <Input
+                        disabled={this.state.social}
+                        defaultValue={this.state.email}
                         containerStyle={{ paddingTop: 10 }}
                         inputStyle={{ left: 10, fontSize: 16, borderBottomWidth: 0 }}
                         inputContainerStyle={{ borderWidth: 1, borderColor: '#E8E8E8', borderRadius: 10, paddingVertical: 5, backgroundColor: '#F6F6F6' }}
@@ -143,27 +166,33 @@ export default class RegisterPage extends Component {
                         onChangeText={this.setUsername}
                         placeholder={this.state.i18n.login.username}
                     />
-                    <Input
-                        containerStyle={{ paddingTop: 10 }}
-                        inputStyle={{ left: 10, fontSize: 16, borderBottomWidth: 0 }}
-                        inputContainerStyle={{ borderWidth: 1, borderColor: '#E8E8E8', borderRadius: 10, paddingVertical: 5, backgroundColor: '#F6F6F6' }}
-                        errorStyle={{ color: 'red' }}
-                        errorMessage={this.state.passwordError ? this.state.i18n.login.enterPassword : ''}
-                        onChangeText={this.setPassword}
-                        placeholder={this.state.i18n.login.password}
-                        secureTextEntry={true}
-                    />
-                    <Input
-                        containerStyle={{ paddingTop: 10 }}
-                        inputStyle={{ left: 10, fontSize: 16, borderBottomWidth: 0 }}
-                        inputContainerStyle={{ borderWidth: 1, borderColor: '#E8E8E8', borderRadius: 10, paddingVertical: 5, backgroundColor: '#F6F6F6' }}
-                        errorStyle={{ color: 'red' }}
-                        errorMessage={this.state.passwordagainError ? this.state.i18n.login.enterPassword :
-                            this.state.passwordagainSameError ? this.state.i18n.register.passwordNotSame : ''}
-                        onChangeText={this.setPasswordAgain}
-                        placeholder={this.state.i18n.register.passwordagain}
-                        secureTextEntry={true}
-                    />
+
+                    {
+                        this.state.social ? null : <Input
+                            containerStyle={{ paddingTop: 10 }}
+                            inputStyle={{ left: 10, fontSize: 16, borderBottomWidth: 0 }}
+                            inputContainerStyle={{ borderWidth: 1, borderColor: '#E8E8E8', borderRadius: 10, paddingVertical: 5, backgroundColor: '#F6F6F6' }}
+                            errorStyle={{ color: 'red' }}
+                            errorMessage={this.state.passwordError ? this.state.i18n.login.enterPassword : ''}
+                            onChangeText={this.setPassword}
+                            placeholder={this.state.i18n.login.password}
+                            secureTextEntry={true}
+                        />
+                    }
+
+                    {
+                        this.state.social ? null : <Input
+                            containerStyle={{ paddingTop: 10 }}
+                            inputStyle={{ left: 10, fontSize: 16, borderBottomWidth: 0 }}
+                            inputContainerStyle={{ borderWidth: 1, borderColor: '#E8E8E8', borderRadius: 10, paddingVertical: 5, backgroundColor: '#F6F6F6' }}
+                            errorStyle={{ color: 'red' }}
+                            errorMessage={this.state.passwordagainError ? this.state.i18n.login.enterPassword :
+                                this.state.passwordagainSameError ? this.state.i18n.register.passwordNotSame : ''}
+                            onChangeText={this.setPasswordAgain}
+                            placeholder={this.state.i18n.register.passwordagain}
+                            secureTextEntry={true}
+                        />
+                    }
 
                     {
                         this.state.serverErrorMessage ? <Text style={{ textAlign: 'center', fontSize: 14, fontWeight: '300', padding: 14, paddingTop: 10, color: 'red' }}>{this.state.serverErrorMessage}</Text> : null
@@ -181,16 +210,19 @@ export default class RegisterPage extends Component {
                         />
                     </View>
 
-                    <View style={{}}>
-                        <Button
-                            buttonStyle={{ borderColor: 'black', alignSelf: 'center' }}
-                            titleStyle={{ color: '#2B388F', fontSize: 16, fontWeight: 'bold', textAlign: 'center' }}
-                            containerStyle={{ paddingHorizontal: 10, paddingTop: 5, flex: 1 }} ß
-                            title={this.state.i18n.activeAccount.confirm}
-                            type="clear"
-                            onPress={this.gotoActiveAccount}
-                        />
-                    </View>
+                    {
+                        this.state.social ? null :
+                            <View style={{}}>
+                                <Button
+                                    buttonStyle={{ borderColor: 'black', alignSelf: 'center' }}
+                                    titleStyle={{ color: '#2B388F', fontSize: 16, fontWeight: 'bold', textAlign: 'center' }}
+                                    containerStyle={{ paddingHorizontal: 10, paddingTop: 5, flex: 1 }} ß
+                                    title={this.state.i18n.activeAccount.confirm}
+                                    type="clear"
+                                    onPress={this.gotoActiveAccount}
+                                />
+                            </View>
+                    }
                 </View>
             </ScrollView>
         </KeyboardAvoidingView>;

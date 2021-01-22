@@ -10,6 +10,10 @@ export default {
         invalid: 'Yanlış kullanıcı adı, şifre.',
         enterUsername: 'Kullanıcı Adı giriniz.',
         enterPassword: 'Şifre giriniz.',
+        google: 'Google İle Giriş Yap',
+        apple: 'Apple İle Giriş Yap',
+        facebook: 'Facebook İle Giriş Yap',
+        socialerror: 'Giriş başarısız.'
     },
     register: {
         title: 'Hesap Oluşturma',
@@ -42,7 +46,7 @@ export default {
         confirm: 'Aktivasyon Kodu Gir',
         code: 'Aktivasyon Kodu',
         description: 'Hesap aktifleştirmek için kayıt olduğunuz mail adresinize gönderdiğimiz aktivasyon kodunu kullanarak hesabınızı aktif yapabilirsiniz.',
-        loginDescription: 'Mail adresinize gelen aktivasyon kodu ile hesabınızı aktif yapabilirsiniz.',
+        loginDescription: "Woo Login'e kayıt yaptıysanız, mail adresinize gelen aktivasyon kodu ile hesabınızı aktif yapabilirsiniz.",
         noconfirm: 'Kod Gelmedi',
         invalid: 'Yanlış kullanıcı adı, aktivasyon kodu.',
         enterActivationCode: 'Aktivasyon kodunu giriniz.'

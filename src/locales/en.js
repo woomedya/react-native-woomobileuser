@@ -10,6 +10,10 @@ export default {
         invalid: 'Wrong username, password.',
         enterUsername: 'Enter Username.',
         enterPassword: 'Enter password.',
+        google: 'Sign In with Google',
+        apple: 'Sign In with Apple',
+        facebook: 'Sign In with Facebook',
+        socialerror: 'Login failed.'
     },
     register: {
         title: 'Creating an Account',
@@ -42,7 +46,7 @@ export default {
         confirm: 'Enter Activation Code',
         code: 'Activation code',
         description: 'You can activate your account by using the activation code we send to your registered e-mail address to activate your account.',
-        loginDescription: 'You can activate your account with the activation code sent to your e-mail address.',
+        loginDescription: 'If you have registered to Woo Login, you can activate your account with the activation code sent to your e-mail address.',
         noconfirm: 'Code Not Arrived',
         invalid: 'Wrong username, activation code.',
         enterActivationCode: 'Enter the activation code.'

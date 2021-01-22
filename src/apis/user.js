@@ -1,5 +1,18 @@
 import baseRequest from './baserequest';
 
+export const loginForFirebase = async (email, token) => {
+    var response = await baseRequest('/mobileuser/firebase', 'mobileuser.firebase', {
+        email,
+        token
+    });
+
+    if (response) {
+        return response;
+    } else {
+        return null;
+    }
+}
+
 export const login = async (username, password) => {
     var response = await baseRequest('/mobileuser/login', 'mobileuser.login', {
         username,
@@ -38,11 +51,12 @@ export const token = async (jwt) => {
     }
 }
 
-export const register = async (email, username, password) => {
+export const register = async (email, username, password, token) => {
     var response = await baseRequest('/mobileuser/register', 'mobileuser.register', {
         email,
         username,
-        password
+        password,
+        token
     });
 
     if (response) {

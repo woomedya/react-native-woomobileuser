@@ -8,19 +8,22 @@ export const PAGE_RESEND_ACTIVATION = 'resendactivation';
 export const PAGE_ACTIVE_ACCOUNT = 'activeaccount';
 
 var store = storeUtil.setScope('woomobileuser_page', {
-    page: PAGE_LOGIN
+    page: PAGE_LOGIN,
+    data: null
 });
 
 var pages = [PAGE_LOGIN];
 
 export const PAGE = 'page';
+export const DATA = 'data';
 
-export const setPage = (value) => {
+export const setPage = (value, data) => {
     if (value) {
         if (pages.indexOf(value) > -1)
             pages = pages.filter((p, i) => i < pages.indexOf(value));
 
         pages.push(value);
+        store.set(DATA, data);
         store.set(PAGE, value);
     }
 }
@@ -43,6 +46,10 @@ export const clearPage = () => {
 
 export const getPage = () => {
     return store.get(PAGE);
+}
+
+export const getData = () => {
+    return store.get(DATA);
 }
 
 export default store;
