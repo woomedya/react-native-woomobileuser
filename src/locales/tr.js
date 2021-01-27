@@ -12,7 +12,6 @@ export default {
         enterPassword: 'Şifre giriniz.',
         google: 'Google İle Giriş Yap',
         apple: 'Apple İle Giriş Yap',
-        facebook: 'Facebook İle Giriş Yap',
         socialerror: 'Giriş başarısız.'
     },
     register: {

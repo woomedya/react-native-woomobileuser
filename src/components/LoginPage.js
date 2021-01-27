@@ -6,7 +6,7 @@ import { Input, Button } from 'react-native-elements';
 import * as pageStore from '../store/page';
 import * as userApi from '../apis/user';
 import * as userAction from '../actions/user';
-import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-community/google-signin';
+import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import auth from '@react-native-firebase/auth';
 import { appleAuth } from '@invertase/react-native-apple-authentication';

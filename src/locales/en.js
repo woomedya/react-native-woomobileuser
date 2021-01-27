@@ -12,7 +12,6 @@ export default {
         enterPassword: 'Enter password.',
         google: 'Sign In with Google',
         apple: 'Sign In with Apple',
-        facebook: 'Sign In with Facebook',
         socialerror: 'Login failed.'
     },
     register: {
