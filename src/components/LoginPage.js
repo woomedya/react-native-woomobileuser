@@ -79,16 +79,16 @@ export default class LoginPage extends Component {
             return;
         this.setLoading(false, true);
         try {
+            await GoogleSignin.configure({
+                webClientId: opts.webClientId,
+                forceCodeForRefreshToken: true
+            });
+
             try {
                 await GoogleSignin.revokeAccess();
                 await GoogleSignin.signOut();
             } catch (error) { }
 
-            await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
-            await GoogleSignin.configure({
-                webClientId: opts.webClientId,
-                forceCodeForRefreshToken: true
-            });
             let googleUser = await GoogleSignin.signIn();
 
             let credential = auth.GoogleAuthProvider.credential(googleUser.idToken);
