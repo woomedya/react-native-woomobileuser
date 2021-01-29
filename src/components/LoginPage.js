@@ -80,8 +80,9 @@ export default class LoginPage extends Component {
         try {
             await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
             let googleUser = await GoogleSignin.signIn();
+            let getToken = await GoogleSignin.getTokens();
 
-            let credential = auth.GoogleAuthProvider.credential(googleUser.idToken);
+            let credential = auth.GoogleAuthProvider.credential(googleUser.idToken, getToken.accessToken);
             await (auth().signInWithCredential(credential));
             let userInfo = auth().currentUser;
 
