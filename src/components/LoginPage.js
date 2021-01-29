@@ -10,6 +10,7 @@ import { GoogleSignin, statusCodes } from '@react-native-community/google-signin
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import auth from '@react-native-firebase/auth';
 import { appleAuth } from '@invertase/react-native-apple-authentication';
+import opts from '../../config';
 
 export default class LoginPage extends Component {
     constructor(props) {
@@ -84,6 +85,10 @@ export default class LoginPage extends Component {
             } catch (error) { }
 
             await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+            await GoogleSignin.configure({
+                webClientId: opts.webClientId,
+                forceCodeForRefreshToken: true
+            });
             let googleUser = await GoogleSignin.signIn();
 
             let credential = auth.GoogleAuthProvider.credential(googleUser.idToken);

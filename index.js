@@ -6,12 +6,13 @@ import * as userRepo from './src/repositories/user';
 import WUBackButton_ from './src/components/WUBackButton';
 import * as userAction_ from './src/actions/user';
 
-export const config = async ({ serverUrl, publicKey, privateKey, locales, lang }) => {
+export const config = async ({ serverUrl, publicKey, privateKey, locales, lang, webClientId }) => {
     opts.serverUrl = serverUrl;
     opts.publicKey = publicKey;
     opts.privateKey = privateKey;
     opts.lang = lang;
     opts.locales = locales || {};
+    opts.webClientId = webClientId;
 
     var user = await userRepo.getUser();
     userStore_.setUser(user);

@@ -4,5 +4,6 @@ export default opts = {
     privateKey: '',
     tokenTimeout: 20000,
     locales: {},
-    lang: 'tr'
+    lang: 'tr',
+    webClientId: null
 };
