@@ -91,7 +91,7 @@ export default class LoginPage extends Component {
                 let getToken = await GoogleSignin.getTokens();
                 await GoogleSignin.clearCachedAccessToken(getToken.accessToken);
                 getToken = await GoogleSignin.getTokens();
-                accessToken = getToken.accessToken();
+                accessToken = getToken.accessToken;
             }
 
             let credential = auth.GoogleAuthProvider.credential(googleUser.idToken, accessToken);
