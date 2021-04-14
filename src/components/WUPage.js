@@ -53,13 +53,13 @@ export default class WUPage extends Component {
     render() {
         var page = this.state.page;
         return this.state.user != null ? null :
-            page == pageStore.PAGE_LOGIN ? <LoginPage wellcome={this.props.wellcome} description={this.props.description} /> :
-                page == pageStore.PAGE_REGISTER ? <RegisterPage /> :
-                    page == pageStore.PAGE_FORGOT_PASSWORD ? <ForgotPassword /> :
-                        page == pageStore.PAGE_CHANGE_PASSWORD ? <ChangePassword /> :
-                            page == pageStore.PAGE_ACTIVE_ACCOUNT ? <ActiveAccount /> :
-                                page == pageStore.PAGE_RESEND_ACTIVATION ? <ResendActivation /> :
-                                    null;
+            (page == pageStore.PAGE_LOGIN ? <LoginPage wellcome={this.props.wellcome} description={this.props.description} /> :
+                (page == pageStore.PAGE_REGISTER ? <RegisterPage /> :
+                    (page == pageStore.PAGE_FORGOT_PASSWORD ? <ForgotPassword /> :
+                        (page == pageStore.PAGE_CHANGE_PASSWORD ? <ChangePassword /> :
+                            (page == pageStore.PAGE_ACTIVE_ACCOUNT ? <ActiveAccount /> :
+                                (page == pageStore.PAGE_RESEND_ACTIVATION ? <ResendActivation /> :
+                                    null))))));
     }
 }
 
