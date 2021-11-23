@@ -226,14 +226,15 @@ export default class LoginPage extends Component {
                             style={{ textAlign: 'center', fontSize: 20, fontWeight: 'bold', padding: 20, paddingBottom: 0 }}
                         >{this.state.i18n.login.title}</Text>
                     </View> : <View style={{ padding: 30, paddingVertical: 10 }}>
-                            <Text
-                                style={{ textAlign: 'center', fontSize: 30, fontWeight: 'bold', padding: 20, paddingBottom: 0 }}
-                            >{this.state.i18n.login.title}</Text>
-                        </View>
+                        <Text
+                            style={{ textAlign: 'center', fontSize: 30, fontWeight: 'bold', padding: 20, paddingBottom: 0 }}
+                        >{this.state.i18n.login.title}</Text>
+                    </View>
                 }
 
                 <View style={{ padding: 16 }}>
                     <Input
+                        accessibilityLabel="username" testID="username"
                         containerStyle={{ paddingTop: 10 }}
                         inputStyle={{ left: 10, fontSize: 16, borderBottomWidth: 0 }}
                         inputContainerStyle={{ borderWidth: 1, borderColor: '#E8E8E8', borderRadius: 10, paddingVertical: 5, backgroundColor: '#F6F6F6' }}
@@ -241,8 +242,10 @@ export default class LoginPage extends Component {
                         onChangeText={this.setUsername}
                         errorStyle={{ color: 'red' }}
                         errorMessage={this.state.usernameError ? this.state.i18n.login.enterUsername : ''}
+
                     />
                     <Input
+                        accessibilityLabel="password" testID="password"
                         containerStyle={{ paddingTop: 10 }}
                         inputStyle={{ left: 10, fontSize: 16, borderBottomWidth: 0 }}
                         inputContainerStyle={{ borderWidth: 1, borderColor: '#E8E8E8', borderRadius: 10, paddingVertical: 5, backgroundColor: '#F6F6F6' }}
