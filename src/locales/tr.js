@@ -55,5 +55,11 @@ export default {
         description: 'Hesap aktifleştirmek için kayıt olduğunuz mail adresinizi giriniz. Size hesap aktivasyon kodu göndereceğiz. Bu kodu kullanarak hesabınızı aktif yapabilirsiniz.',
         send: 'Aktivasyon Kodu Gönder',
         invalid: 'Yanlış e-posta adresi.'
+    },
+    logout: {
+        title: 'Çıkış Yap',
+        desc: 'Çıkış yapmak istiyor musunuz?',
+        ok: 'Tamam',
+        cancel: 'İptal'
     }
 }

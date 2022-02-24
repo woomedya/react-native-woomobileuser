@@ -55,5 +55,11 @@ export default {
         description: 'Enter your registered e-mail address to activate an account. We will send you an account activation code. Using this code, you can activate your account.',
         send: 'Send Activation Code',
         invalid: 'Incorrect email address.'
+    },
+    logout: {
+        title: 'Log out',
+        desc: 'Do you want to log out?',
+        ok: 'Okay',
+        cancel: 'Cancel'
     }
 }
