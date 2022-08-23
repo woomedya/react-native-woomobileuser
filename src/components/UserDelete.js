@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableWithoutFeedback, Alert } from 'react-native';
 import EntypoIcon from "react-native-vector-icons/Entypo";
+import prompt from 'react-native-prompt-android';
 
 
 import * as userAction from 'react-native-woomobileuser/src/actions/user';
@@ -63,16 +64,26 @@ export default class UserDelete extends Component {
 
 
     alertMesagge = (message) => {
-        Alert.alert(message,
+        Alert.alert(
+            message,
+            "",
             [
-                { text: this.state.i18n.logout.cancel, style: "cancel" },
-            ]);
+                {
+                    text: this.state.i18n.logout.cancel,
+                    style: "cancel"
+                },
+            ],
+            {
+                cancelable: true,
+
+            }
+        );
 
     }
 
     deleteFunc = () => {
 
-        Alert.prompt(
+        prompt(
             this.state.i18n.delete.title,
             this.state.i18n.delete.desc,
             [
@@ -88,7 +99,9 @@ export default class UserDelete extends Component {
                     }
                 }
             ],
-            "secure-text"
+            {
+                type: 'secure-text',
+            }
         );
 
     }
