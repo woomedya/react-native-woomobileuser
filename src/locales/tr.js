@@ -61,5 +61,12 @@ export default {
         desc: 'Çıkış yapmak istiyor musunuz?',
         ok: 'Tamam',
         cancel: 'İptal'
+    },
+    delete: {
+        title: 'Hesabı Sil',
+        desc: 'Hesabi silmek istiyor musunuz?',
+        ok: 'Hesabı Sil',
+        cancel: 'İptal',
+        invalid: 'Şifreniz boş olamaz!',
     }
 }

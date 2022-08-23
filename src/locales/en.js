@@ -61,5 +61,12 @@ export default {
         desc: 'Do you want to log out?',
         ok: 'Okay',
         cancel: 'Cancel'
+    },
+    delete: {
+        title: 'Delete Account',
+        desc: 'Do you want to delete account?',
+        arrow: 'Delete Account',
+        cancel: 'Cancel',
+        invalid: 'Your password cannot be empty!',
     }
 }

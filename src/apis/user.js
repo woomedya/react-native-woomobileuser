@@ -13,6 +13,18 @@ export const loginForFirebase = async (email, token) => {
     }
 }
 
+export const userDelete = async (username, password) => {
+    var response = await baseRequest('/mobileuser/delete', 'mobileuser.delete', {
+        username,
+        password
+    });
+    if (response) {
+        return response;
+    } else {
+        return null;
+    }
+}
+
 export const login = async (username, password) => {
     var response = await baseRequest('/mobileuser/login', 'mobileuser.login', {
         username,
